@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Transaction System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/signin.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+<nav  class="navbar navbar-expand-sm navbar-dark">
+  
+  <!-- Brand/logo -->
+  <a style="color: #343a40;" class="navbar-brand" href="#"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="listing.html">Transactions</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="profile.html">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signin.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signup.html">Register</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" onclick="logout()" class="nav-link" href="#">Logout</a>
+    </li>
+  </ul>
+</nav>
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>Login</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li  class="active">Login</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ <div id="first">
+				<div class="myform form ">
+					 <div class="logo mb-3">
+						 <div class="col-md-12 text-center">
+							<h1>Login</h1>
+						 </div>
+					</div>
+                   <form method="post" name="signup">
+                           <div class="form-group">
+                              <label for="userName">User Name </label>
+                              <input type="text" name="userName"  class="form-control" id="userName" placeholder="Enter User Name">
+                           </div>
+                           <div class="form-group">
+                              <label for="password">Password</label>
+                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                           </div>
+                           <div class="col-md-12 text-center ">
+                              <input type="button" name="submit" onclick="validateLogin()" class=" btn btn-block mybtn btn-primary tx-tfm" value=" LogIn ">
+                           </div>
+                          <div class="form-group">
+                            <p class="pull-left"><a href="forgot_password.html" id="forgot_password"></a></p>
+                              <p class="text-center"><a href="signup.html" id="signup">Resgister here</a></p>
+                           </div>
+                        </form>
+				</div>
+			</div>
+
+<footer class="footer">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"></a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</body>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+  
+  function logout()
+  {
+    sessionStorage.clear();
+    window.location = "file:///Users/zunairajaved/Desktop/projects/task2/signin.html";
+
+  }
+</script>
+</html>

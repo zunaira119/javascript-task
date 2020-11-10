@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Transaction System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="assets/js/1-basics.js"></script>
+    <script src="assets/js/2-output-file.js"></script>
+    <script src="assets/js/3-upload.js"></script>
+       <style>
+      #vid-show{
+        display: block;
+        margin-bottom: 20px;
+        display: block;
+    margin-bottom: 20px;
+    width: 70%;
+    padding-left: 23%;
+      }
+
+       #vid-canvas, #vid-take {
+        display: block;
+        margin-bottom: 20px;
+        display: block;
+    margin-bottom: 20px;
+    width: 29%;
+    margin-left: 25%;
+       /* #vid-show, #vid-canvas, #vid-take {
+    display: block;
+    margin-bottom: 100%;
+    0%: ;
+    : ;
+    width: 25%;
+    padding-left: 10%;*/
+    /* margin-bottom: 100%;
+      }*/
+    </style>
+
+
+</head>
+<body>
+
+<nav  class="navbar navbar-expand-sm navbar-dark">
+  
+  <!-- Brand/logo -->
+  <a style="color: #343a40;" class="navbar-brand" href="#"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="listing.html">Transactions</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="profile.html">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signin.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signup.html">Register</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" onclick="logout()" class="nav-link" href="#">Logout</a>
+    </li>
+  </ul>
+</nav>
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>My Profile</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li  class="active">My Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="first">
+        <div class="myform form ">
+           <div class="logo mb-3">
+             <div class="col-md-12 text-center">
+              <h1>Edit Profile Image</h1>
+             </div>
+          </div>
+              <div class="container">
+                 <div id="vid-controls">
+          <video id="vid-show" autoplay></video>
+          <input id="vid-take" type="button" value="Take Photo"/>
+          <div id="vid-canvas"></div>
+          <!-- <img src="/Users/zunairajaved/Downloads/webcam.png" alt="imag"> -->
+        </div>
+          </div>
+                   
+        </div>
+      </div>
+    
+ <footer class="footer">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"></a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+  </body>
+  <script type="text/javascript">
+  
+  function logout()
+  {
+    sessionStorage.clear();
+    window.location = "file:///Users/zunairajaved/Desktop/projects/task2/signin.html";
+
+  }
+</script>
+ 
+</html>

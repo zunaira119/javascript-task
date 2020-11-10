@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body onload="myFunction()">
+  <nav  class="navbar navbar-expand-sm navbar-dark">
+  
+  <!-- Brand/logo -->
+  <a style="color: #343a40;" class="navbar-brand" href="#"></a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="listing.html">Transactions</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="profile.html">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signin.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signup.html">Register</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" onclick="logout()" class="nav-link" href="#">Logout</a>
+    </li>
+  </ul>
+</nav>
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>Profile</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li  class="active">Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ <div id="list">
+        <div class="profile form ">
+           <div class="logo mb-3">
+            <div class="col-md-12 text-center">
+              <h1>Profile</h1>
+             </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="edit-profile-photo">
+                            <img style="height: 100%; width: 60%; border-radius: 50% ;object-fit:cover" id="preview" src=""
+                                 alt="agent-1" class="img-responsive">
+                        </div>
+                        <div class="change-photo-btn">
+                                <div class="photoUpload">
+                                   <!--  <form enctype="multipart/form-data" id="upload_profile_image_form"> -->
+                                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                        <input type="file" id="filetag" name="select_profile_image"
+                                               class="upload"/>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                        
+                        <h3 id="display_name">Name</h3>
+                        <p id="display_email">Email</p>
+                
+              </div>
+                      <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="my-address">
+                    <div class="myform form">
+                      <form>
+                        <div class="form-group col-md-12">
+                            <label for="fname">User Name</label>
+                            <input type="text" name="userName"  class="form-control" id="userName" placeholder="Enter User Name">
+                            
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone"  class="form-control" id="phone" placeholder="Enter Phone no">
+                            
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="email">Email</label>
+                            <input type="email" name="email"  class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="col-md-12 text-center ">
+                              <button type="submit" id="update" value="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Update</button>
+                           </div>
+                           <div class="form-group">
+                            <p class="pull-left"><a href="forgot_password.html" id="forgot_password">Change Password</a></p>
+                              <p class="text-center"><a href="edit_profile.html" id="signup">Take Picture</a></p>
+                           </div>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+              
+            </div>
+            
+          </div>
+                        
+                          
+                        
+       
+      </div>
+    </div>
+
+<footer class="footer">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"></a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</body>
+<script type="text/javascript">
+  function myFunction() {
+  // alert("Page is loaded");
+  let userlist = JSON.parse(localStorage.getItem('loginInfo'));
+  console.log(userlist);
+  let uname = (userlist.userName);
+  let pass=(userlist.password);
+ let email1 = (userlist.email);
+  let phone1 = (userlist.phone);
+  document.getElementById("userName").value = uname;
+  document.getElementById("email").value = email1;
+  document.getElementById("phone").value = phone1;
+}
+let test = JSON.parse(localStorage.getItem('userTable'));
+console.log("be",test);
+const updateData = (e) => {
+    e.preventDefault();
+  
+    let temp=[];
+    let arrdata = {
+        userName:document.getElementById('userName').value,
+        email:document.getElementById('email').value,
+        phone:document.getElementById('phone').value,
+    }
+    temp.push(arrdata);
+    // document.forms[0].reset();
+  let userlist = JSON.parse(localStorage.getItem('loginInfo'));
+  var id1=test[0].id;
+  var a = test.indexOf(id1);
+  
+    for (var i = 0; i < test.length; i++) {
+      if (userlist.id === test[i].id) {
+        test[i].userName="";
+        test[i].email="";
+        test[i].phone="";
+        userlist.userName="";
+        userlist.email="";
+        userlist.phone="";
+        test[i].userName += document.getElementById('userName').value ; 
+        test[i].email += document.getElementById('email').value ; 
+        test[i].phone += document.getElementById('phone').value ; 
+        userlist.userName += document.getElementById('userName').value ; 
+        userlist.email += document.getElementById('email').value ; 
+        userlist.phone += document.getElementById('phone').value ; 
+        test[i].check += true;
+      }
+  }
+localStorage.setItem('userTable' , JSON.stringify(test));
+localStorage.setItem('loginInfo' , JSON.stringify(userlist));
+
+
+  console.log(test);
+  // console.log("user",userlist1);
+
+
+// localStorage.setItem('userTable' , JSON.stringify(temp));
+}
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('update').addEventListener('click',updateData);
+});
+</script>
+<script type="text/javascript">
+  var fileTag = document.getElementById("filetag"),
+    preview = document.getElementById("preview");
+    
+fileTag.addEventListener("change", function() {
+  changeImage(this);
+});
+
+function changeImage(input) {
+  var reader;
+
+  if (input.files && input.files[0]) {
+    reader = new FileReader();
+
+    reader.onload = function(e) {
+      preview.setAttribute('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+<script type="text/javascript">
+  
+  function logout()
+  {
+    sessionStorage.clear();
+    window.location = "file:///Users/zunairajaved/Desktop/projects/task2/signin.html"
+
+  }
+</script>
+</html>

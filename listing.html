@@ -1,0 +1,746 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  	<title>Listing</title>
+  	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  </head>
+  <body>
+    <nav  class="navbar navbar-expand-sm navbar-dark">
+    <a style="color: #343a40;" class="navbar-brand" href="#"></a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a style="color: #343a40;" class="nav-link" href="listing.html">Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: #343a40;" class="nav-link" href="profile.html">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: #343a40;" class="nav-link" href="signin.html">Login</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: #343a40;" class="nav-link" href="signup.html">Register</a>
+      </li>
+      <li class="nav-item">
+        <a style="color: #343a40;" onclick="logout()" class="nav-link" href="#">Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="sub-banner overview-bgi">
+      <div class="overlay">
+          <div class="container">
+              <div class="breadcrumb-area">
+                  <h1>Transactions</h1>
+                  <ul class="breadcrumbs">
+                      <li><a href="index.html">Home</a></li>
+                      <li  class="active">Transactions</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+   <div id="list">
+  				<div class="listing form ">
+  					 <div class="logo mb-3">
+  					</div>
+                          <div class="container tb">
+                            <h1>Add Transaction</h1>
+                            <button style="margin-bottom: 1%" type="button" class="btn btn-primary mybtn btn-lg" data-toggle="modal" data-target="#myModal">Add Transaction</button>
+                            <input type="text" class="inpf" id="advanceSearch" onkeyup="myFunction(this.id,1)" placeholder="Advance Search" title="Type in a name">
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <table class="table table-bordered" id="myTable">
+                                <thead>
+                                  <tr>
+                                    <th>Id</th>
+                                    <th> Services<input type="text" id="services" onkeyup="searchFunction(this.id,1)" placeholder="search" title="Type in a name"></th>
+                                    <th>Email
+                                      <input type="text" id="services" onkeyup="emailFunction(this.id,2)" placeholder="search" title="Type in a name">
+                                    </th>
+                                    <th>Name 
+                                    <input type="text" id="services" onkeyup="nameFunction(this.id,3)" placeholder="search" title="Type in a name"></th>
+                                    <th>DOB 
+                                      <input type="text" id="services" onkeyup="dobFunction(this.id,4)" placeholder="search" title="Type in a name">
+                                    </th>
+                                    <th>Country <input type="text" id="services" onkeyup="countryFunction(this.id,5)" placeholder="search" title="Type in a name"></th>
+                                    <th>Address</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="employee_table">
+                                
+                                  <!-- <tr>
+                                    <td>abc</td>
+                                    <td>def</td>
+                                    <td><input type="text" onkeyup="myFunction()" name=""></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr> -->
+                                
+                                </tbody>
+                              </table>
+
+                              
+                            </div>
+                            
+                          </div>
+  				</div>
+  			</div>
+      </div>
+      <div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <h4 class="modal-title">Add Transaction</h4>
+          </div>
+          <div class="modal-body">
+            <div class="container form-border">
+                     <form action="" method="post" id="myform" name="myform">
+                      <div class="row">
+                      <div class="form-group col-md-4">
+                                <label for="services">Services</label>
+                                <input type="text" name="services"  class="form-control" id="services" placeholder="Enter reference">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="email"> Email</label>
+                                <input type="text" name="email"  class="form-control" id="email" placeholder="Enter ">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="fname"> First Name</label>
+                                <input type="text" name="fname"  class="form-control" id="fname" placeholder="Enter ">
+                             </div>
+                           </div>
+                           <div class="row">
+                      <div class="form-group col-md-4">
+                                <label for="mname"> Middle Name</label>
+                                <input type="text" name="mname"  class="form-control" id="mname" placeholder="Enter ">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="lname"> Last Name</label>
+                                <input type="text" name="lname"  class="form-control" id="lname" placeholder="Enter">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="number">Document Number</label>
+                                <input type="text" name="number"  class="form-control" id="number" placeholder="Enter">
+                             </div>
+                           </div>
+                             <div class="row">
+                      <div class="form-group col-md-4">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" name="phone"  class="form-control" id="phone" placeholder="Enter">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="dob"> Date Of Birth</label>
+                                <input type="Date" name="dob"  class="form-control" id="dob" placeholder="Enter ">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="issue_date">Issue Date</label>
+                                <input type="Date" name="issue_date"  class="form-control" id="issue_date" placeholder="Enter ">
+                             </div>
+                           </div>
+                           <div class="row">
+                      <div class="form-group col-md-4">
+                                <label for="expiry_date">Expiry Date</label>
+                                <input type="Date" name="expiry_date"  class="form-control" id="expiry_date" placeholder="Enter">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="status"> Status</label>
+                                <input type="text" name="status"  class="form-control" id="status" placeholder="Enter">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" class="form-control">
+                                    <option >Pakistan</option>
+                        
+                                  </select>
+                             </div>
+                           </div>
+                           <div class="row">
+                      <div class="form-group col-md-8">
+                                <label for="address">Full Address</label>
+                                <input type="text" name="address"  class="form-control" id="address" placeholder="Enter">
+                             </div>
+                             <div class="form-group col-md-4">
+                                <label for="documentType"> Document Type</label>
+                                <select id="documentType" name="documentType" class="form-control">
+                                    <option>Document Type</option>
+                        
+                                  </select>
+                             </div>
+                           </div>
+                             <div style="float: right; margin-bottom: 1%;">
+                              <button type="submit" id="sub" class=" btn btn-block mybtn btn-primary tx-tfm">Submit</button>
+                            </div>
+                              <div>
+                                <button type="submit" id="reset" class=" btn btn-block mybtn btn-primary tx-tfm">Reset</button>
+                             </div>
+                          </form>
+                        </div>
+     
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary mybtn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>.  
+    </div>
+  </div>
+
+
+
+
+
+
+   <div class="modal fade" id="viewModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Transaction Detail</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form>
+              <div class="row">
+          <div class="form-group col-md-12">
+            <label for="reference1">Reference:</label>
+            <input type="text" class="form-control" id="reference1" placeholder="Example input" readonly="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="email1">Email</label>
+            <input type="text" class="form-control" id="email1" placeholder="Another input" readonly="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="finame">First Name:</label>
+            <input type="text" class="form-control" id="finame" placeholder="First Name" readonly="">
+          </div>
+          
+          <div class="form-group col-md-4">
+            <label for="miname">Middle Name</label>
+            <input type="text" class="form-control" id="miname" placeholder="Another input" readonly="">
+          </div>
+          </div>
+          <div class="row"> 
+          <div class="form-group col-md-4">
+            <label for="laname">Last Name:</label>
+            <input type="text" class="form-control" id="laname" placeholder="Example input" readonly="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="used_services">Services:</label>
+            <input type="text" class="form-control" id="used_services" placeholder="Another input" readonly="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="bgc">BGC Number:</label>
+            <input type="text" class="form-control" id="bgc" placeholder="Example input" readonly="">
+          </div>
+          </div>
+          <div class="row">
+          <div class="form-group col-md-4">
+            <label for="formGroupExampleInput2">Date Of Birth</label>
+            <input type="text" class="form-control" id="id8" placeholder="Another input" readonly="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="formGroupExampleInput">Issue Date:</label>
+            <input type="text" class="form-control" id="id10" placeholder="Example input" readonly="">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="formGroupExampleInput2">Country Code:</label>
+            <input type="text" class="form-control" id="id14" placeholder="Another input" readonly="">
+          </div>
+          </div>
+          <div class="row">
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput">Status:</label>
+            <input type="text" class="form-control" id="id11" placeholder="Example input" readonly="">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput2">Country</label>
+            <input type="text" class="form-control" id="myText3" placeholder="Another input" readonly="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput">Full Address:</label>
+            <input type="text" class="form-control" id="id9" placeholder="Example input" readonly="">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput2">Verify State:</label>
+            <input type="text" class="form-control" id="id15" placeholder="Another input" readonly="">
+          </div>
+        </div>
+        </form>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="modal fade" id="editModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Transaction</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <form id="listing-form" class="form col-md-12" method="post">
+                  <h3 class="text-center text-secondary "></h3>
+                  <input type="text" name="id" id="eun">
+                  <div class="row">
+                  <div class="form-group col-md-6">
+                      <label for="uno" class="text-secondary">Request Id</label><br>
+                      <input type="text" name="uno" id="uno" class="form-control" required placeholder="Reference">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="reference" class="text-secondary">Reference</label><br>
+                      <input type="text" name="reference" id="emyText" class="form-control" required placeholder="Reference">
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="form-group col-md-4">
+                      <label for="email" class="text-secondary">E-Mail:</label><br>
+                      <input type="email" name="email" id="emyText2" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="fname" class="text-secondary">First Name:</label><br>
+                      <input type="text" name="fname" id="emytexts" class="form-control" placeholder="First Name" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="mname" class="text-secondary">Middle Name:</label><br>
+                      <input type="text" name="mname" id="eid6" class="form-control" placeholder="Middle Name" required>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="form-group col-md-4">
+                      <label for="lname" class="text-secondary">Last Name</label><br>
+                      <input type="text" name="lname" id="eid7" class="form-control" placeholder="Last Name" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="dnumber" class="text-secondary">Services:</label><br>
+                      <input type="text" name="dnumber" id="eid12" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="pnumber" class="text-secondary">BGC Number:</label><br>
+                      <input type="Number" name="pnumber" id="eid13" class="form-control" required>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="form-group col-md-4">
+                      <label for="dob" class="text-secondary">Date Of Birth:</label><br>
+                      <input type="date" name="dob" id="eid8" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="time" class="text-secondary">Issue Date:</label><br>
+                      <input type="date" name="time" id="eid10" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="cod" class="text-secondary">Country Code:</label><br>
+                      <input type="cod" name="cod" id="eid14" class="form-control" required>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="form-group col-md-6">
+                      <label for="status" class="text-secondary">Status:</label><br>
+                      <input type="text" name="status" id="eid11" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="phone" class="text-secondary">Country:</label><br>
+                      <select id="eid16" name="country" class="form-control">
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="India">India</option>
+                      <option value="UK">UK</option>
+                      <option value="Dubai">Dubai</option>
+                  </select>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="form-group col-md-6">
+                      <label for="address" class="text-secondary">Full Address:</label><br>
+                      <input type="text" name="address" id="eid9" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="vstate" class="text-secondary">Verify State:</label><br>
+                      <input type="text" name="vstate" id="eid15" class="form-control" required>
+                  </div>
+                  </div>
+
+                  <div class="form-group butn">
+                    <input type="button" name="submit" id="etest" class="btn btn-primary mybtn btn-md" value="submit">
+                      <input type="reset" name="submit" id="" class="btn mybtn btn-outline-secondary" value="Reset">
+                  </div>
+              </form>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn mybtn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          <div id="mg">
+                <pre></pre>
+              </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  <footer class="footer">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/"></a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  </body>
+  <script type="text/javascript">
+  function searchFunction(id,val) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[val];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+  function emailFunction(id,val) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[val];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+  function nameFunction(id,val) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[val];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+  function dobFunction(id,val) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[val];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+  function countryFunction(id,val) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[val];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+  </script>
+  <script type="text/javascript">
+    let temp = [];
+  const storeData = (e) => {
+      e.preventDefault();
+      let arrdata = {
+          request_id: new Date().getUTCMilliseconds(),
+          used_services_in_request:document.getElementById('services').value,
+          email:document.getElementById('email').value,
+          document_first_name:document.getElementById('fname').value,
+          document_middle_name:document.getElementById('mname').value,
+          document_last_name:document.getElementById('lname').value,
+          Document_Number:document.getElementById('number').value,
+          document_dob:document.getElementById('dob').value,
+          created_at:document.getElementById('issue_date').value,
+          phone:document.getElementById('phone').value,
+          Expiry_Date:document.getElementById('expiry_date').value,
+          verification_status:document.getElementById('status').value,
+          country_name:document.getElementById('country').value,
+          address_full_address:document.getElementById('address').value,
+          Document_Type:document.getElementById('documentType').value,
+      }
+      temp.push(arrdata);
+      // document.forms[0].reset();
+  localStorage.setItem('newTransactions' , JSON.stringify(temp));
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('sub').addEventListener('click',storeData);
+  });
+  </script>
+    <script type="text/javascript">
+      var first = []; 
+      var second = [];
+      var listing= [];
+     
+      (function() {
+          var cors_api_host = 'cors-anywhere.herokuapp.com';
+          var cors_api_url = 'https://' + cors_api_host + '/';
+          var slice = [].slice;
+          var origin = window.location.protocol + '//' + window.location.host;
+          var open = XMLHttpRequest.prototype.open;
+          XMLHttpRequest.prototype.open = function() {
+              var args = slice.call(arguments);
+              var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+              if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+                  targetOrigin[1] !== cors_api_host) {
+                  args[1] = cors_api_url + args[1];
+              }
+              return open.apply(this, args);
+          };
+      })();
+      var obj, dbParam, xmlhttp, myObj, x, txt = "";
+      obj = { table: "customers", limit: 20 };
+      dbParam = JSON.stringify(obj);
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          myObj = JSON.parse(this.responseText);
+          console.log(myObj);
+          localStorage.setItem('transactions' , JSON.stringify(myObj.listing_data));
+           first = JSON.parse(localStorage.getItem('transactions'));
+          second = JSON.parse(localStorage.getItem('newTransactions'));
+          listing = first.concat(second);
+          localStorage.setItem('final' , JSON.stringify(listing));
+          console.log(listing);
+          txt += "<table border='1'>"
+          for (x in listing) {
+            txt += '<tr><td>' + listing[x].request_id + '</td>';
+            txt += '<td>' + listing[x].used_services_in_request + '</td>';
+            txt += '<td>' + listing[x].email + '</td>';
+            txt += '<td>' + listing[x].document_first_name + '</td>';
+            txt += '<td>' + listing[x].bgc_dob + '</td>';
+            txt += '<td>' + listing[x].country_name + '</td>';
+            txt += '<td>' + listing[x].address_full_address + '</td>';
+            txt += '<td>' + listing[x].created_at + '</td>';
+            txt += '<td>' + listing[x].verification_status + '</td>';
+            txt += '<td> <button class=\"btn btn-sm mybtn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" onclick=\"editDetail(this)\" ">Edit</button><button type=\"button\" class=\"btn btn-sm mybtn btn-info\" data-toggle=\"modal\" data-target=\"#viewModal\" onclick=\"viewDetail(this)\">view</button> <button class=\"btn mybtn btn-sm btn-danger\" onclick=\"deleteRow(this)\" ">Delete</button></td></tr>';
+          }
+          txt += '</table>'    
+          document.getElementById("employee_table").innerHTML = txt;
+        }  
+      };
+      xmlhttp.open("POST", "http://cityjobs.pk/2.json", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("x=" + dbParam);
+
+    function deleteRow(r) {
+
+    var j = r.parentNode.parentNode.rowIndex;
+        var k=j-1;
+   listing.splice(k,1);
+        console.log(listing);
+      localStorage.setItem('final' , JSON.stringify(listing));
+  console.log("after",listing);
+  document.getElementById("myTable").deleteRow(j);
+  }
+  </script>
+  <script type="text/javascript">
+
+    function viewDetail(r){
+          let mainlist = JSON.parse(localStorage.getItem('final'));
+          console.log("mainlist",mainlist);
+          var i = r.parentNode.parentNode.rowIndex;
+          let t = i-1;
+          let ref = (mainlist[t].reference);
+          console.log(info);
+          let ema = (mainlist[t].email);
+          let dname = (mainlist[t].document_first_name);
+          let dmname = (mainlist[t].document_middle_name);
+          let dlname = (mainlist[t].document_last_name);
+          let uservice = (mainlist[t].used_services_in_request);
+          let bfname = (mainlist[t].bgc_first_name);
+          let ddob = (mainlist[t].document_dob);
+          let ca = (mainlist[t].created_at);
+          let cc = (mainlist[t].country_code);
+          let vs = (mainlist[t].verification_status);
+          let cn = (mainlist[t].country_name);
+          let ad = (mainlist[t].address_first_name);
+          let vl = (mainlist[t].verify_last_state);
+          // alert(mainlist[t].address_first_name);
+          document.getElementById("reference1").value = ref;
+          document.getElementById("email1").value = ema;
+          document.getElementById("finame").value = dname;
+          document.getElementById('miname').value = dmname;
+          document.getElementById('laname').value = dlname;
+          document.getElementById('used_services').value = uservice;
+          document.getElementById('bgc').value = bfname;
+          document.getElementById('id8').value = ddob;
+          document.getElementById('id10').value = ca;
+          document.getElementById('id14').value = cc;
+          document.getElementById('id11').value = vs;
+          document.getElementById("myText3").value = cn;
+          document.getElementById('id9').value = ad;
+          // document.getElementById("myText4").value = info4;
+          document.getElementById("id15").value = vl;
+        }
+  </script>
+  <script type="text/javascript">
+    function editDetail(r){
+          // console.log(myObj.listing_data);
+                // let mydatao = JSON.parse(localStorage.getItem('listinTable'));
+          let mainlist = JSON.parse(localStorage.getItem('final'));
+          // let mainlist = mydatao.concat(mydatas);
+          localStorage.setItem('mainlist' , JSON.stringify(mainlist));
+          var i = r.parentNode.parentNode.rowIndex;
+          let t = i-1;
+          // alert(t);
+          let un = (t);
+          let unId = (mainlist[t].request_id);
+          let info = (mainlist[t].reference);
+          let info2 = (mainlist[t].email);
+          let infoo = (mainlist[t].document_first_name);
+          let info6 = (mainlist[t].document_middle_name);
+          let info7 = (mainlist[t].document_last_name);
+          let info12 = (mainlist[t].used_services_in_request);
+          let info13 = (mainlist[t].bgc_first_name);
+          let info8 = (mainlist[t].document_dob);
+          let info10 = (mainlist[t].created_at);
+          let info14 = (mainlist[t].country_code);
+          let info11 = (mainlist[t].verification_status);
+          let info3 = (mainlist[t].country_name);
+          let info9 = (mainlist[t].address_first_name);
+          let info15 = (mainlist[t].verify_last_state);
+          document.getElementById("eun").value = un;
+          document.getElementById("uno").value = unId;
+          document.getElementById("emyText").value = info;
+          document.getElementById("emyText2").value = info2;
+          document.getElementById("emytexts").value = infoo;
+          document.getElementById('eid6').value = info6;
+          document.getElementById('eid7').value = info7;
+          document.getElementById('eid12').value = info12;
+          document.getElementById('eid13').value = info13;
+          document.getElementById('eid8').value = info8;
+          document.getElementById('eid10').value = info10;
+          document.getElementById('eid14').value = info14;
+          document.getElementById('eid11').value = info11;
+          document.getElementById("eid16").value = info3;
+          document.getElementById('eid9').value = info9;
+          document.getElementById("eid15").value = info15;
+          console.log(mainlist[t]);
+        }
+    const update = (ev) => {
+    let mydatao = JSON.parse(localStorage.getItem('transactions'));
+          let mydatas = JSON.parse(localStorage.getItem('newTransactions'));
+          let mainlist = mydatao.concat(mydatas);
+    // console.log(mainlist[0].email);
+    ev.preventDefault();
+    let mn = document.getElementById('eun').value;
+    // alert(mn);
+    var users = JSON.parse(localStorage.getItem('final'));
+      users[mn]["email"]=document.getElementById('emyText2').value;
+      users[mn]["country_name"]=document.getElementById('eid16').value;
+      users[mn]["reference"]=document.getElementById('emyText').value;
+      users[mn]["document_first_name"]=document.getElementById('emytexts').value;
+      users[mn]["document_middle_name"]=document.getElementById('eid6').value;
+      users[mn]["document_last_name"]=document.getElementById('eid7').value;
+      users[mn]["document_dob"]=document.getElementById('eid8').value;
+      users[mn]["address_first_name"]=document.getElementById('eid9').value;
+      users[mn]["used_services_in_request"]=document.getElementById('eid12').value;
+      users[mn]["country_code"]=document.getElementById('eid14').value;
+      users[mn]["bgc_first_name"]=document.getElementById('eid13').value;
+      users[mn]["verify_last_state"]=document.getElementById('eid15').value;
+      users[mn]["created_at"]=document.getElementById('eid10').value;
+      users[mn]["verification_status"]=document.getElementById('eid11').value;
+      // alert(i);
+      localStorage.setItem('final',JSON.stringify(users));
+      let myd = JSON.parse(localStorage.getItem('final'));
+      // console.log(myd);
+    // var log = {
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('etest').addEventListener('click',update);
+  });
+  </script>
+  <script type="text/javascript">
+    
+    function logout()
+    {
+      sessionStorage.clear();
+      window.location = "file:///Users/zunairajaved/Desktop/projects/task2/signin.html";
+
+    }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $("#advanceSearch").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#employee_table tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
+
+  </html>

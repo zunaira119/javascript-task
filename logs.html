@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Listing</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+  <nav  class="navbar navbar-expand-sm navbar-dark">
+  
+  <!-- Brand/logo -->
+  <a style="color: #343a40;" class="navbar-brand" href="#">Logo</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="listing.html">Transactions</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="profile.html">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signin.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" class="nav-link" href="signup.html">Register</a>
+    </li>
+    <li class="nav-item">
+      <a style="color: #343a40;" onclick="logout()" class="nav-link" href="#">Logout</a>
+    </li>
+  </ul>
+</nav>
+<div class="sub-banner overview-bgi">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>Transactions</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li  class="active">Transactions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ <div id="list">
+				<div class="listing form ">
+					 <div class="logo mb-3">
+					</div>
+                        <div class="container tb">
+                           <!-- <div class="row">
+                            <div class="col-md-12 advance">
+                <input type="text" class="inpf" id="admyInput" onkeyup="myFunction(this.id,1)" placeholder="Advance Search" title="Type in a name">
+              </div>
+            </div> -->
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <table class="table table-bordered" id="myTable">
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>User Name</th>
+                                  <th>Email
+                                    
+                                  </th>
+                                  <th>Phone
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody id="employee_table">
+                              
+                                <!-- <tr>
+                                  <td>abc</td>
+                                  <td>def</td>
+                                  <td><input type="text" onkeyup="myFunction()" name=""></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr> -->
+                              
+                              </tbody>
+                            </table>
+
+                            
+                          </div>
+                          
+                        </div>
+				</div>
+			</div>
+    </div>
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</body>
+<script type="text/javascript">
+  let temp = [];
+const storeData = (e) => {
+    e.preventDefault();
+    let arrdata = {
+        request_id: new Date().getUTCMilliseconds(),
+        used_services_in_request:document.getElementById('services').value,
+        email:document.getElementById('email').value,
+        document_first_name:document.getElementById('fname').value,
+        document_middle_name:document.getElementById('mname').value,
+        document_last_name:document.getElementById('lname').value,
+        Document_Number:document.getElementById('number').value,
+        document_dob:document.getElementById('dob').value,
+        created_at:document.getElementById('issue_date').value,
+        phone:document.getElementById('phone').value,
+        Expiry_Date:document.getElementById('expiry_date').value,
+        verification_status:document.getElementById('status').value,
+        country_name:document.getElementById('country').value,
+        address_full_address:document.getElementById('address').value,
+        Document_Type:document.getElementById('documentType').value,
+    }
+    temp.push(arrdata);
+    // document.forms[0].reset();
+localStorage.setItem('newTransactions' , JSON.stringify(temp));
+}
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('sub').addEventListener('click',storeData);
+});
+</script>
+  <script type="text/javascript">
+    var first = []; 
+    var second = [];
+    var listing= [];
+   
+    (function() {
+        var cors_api_host = 'cors-anywhere.herokuapp.com';
+        var cors_api_url = 'https://' + cors_api_host + '/';
+        var slice = [].slice;
+        var origin = window.location.protocol + '//' + window.location.host;
+        var open = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function() {
+            var args = slice.call(arguments);
+            var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+            if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+                targetOrigin[1] !== cors_api_host) {
+                args[1] = cors_api_url + args[1];
+            }
+            return open.apply(this, args);
+        };
+    })();
+    var obj, dbParam, xmlhttp, myObj, x, txt = "";
+    obj = { table: "customers", limit: 20 };
+    dbParam = JSON.stringify(obj);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        myObj = JSON.parse(this.responseText);
+        console.log(myObj);
+        localStorage.setItem('transactions' , JSON.stringify(myObj.listing_data));
+         first = JSON.parse(localStorage.getItem('transactions'));
+        second = JSON.parse(localStorage.getItem('newTransactions'));
+        listing = first.concat(second);
+        localStorage.setItem('final' , JSON.stringify(listing));
+        console.log(listing);
+        txt += "<table border='1'>"
+        for (x in listing) {
+          txt += '<tr><td>' + listing[x].request_id + '</td>';
+          txt += '<td>' + listing[x].used_services_in_request + '</td>';
+          txt += '<td>' + listing[x].email + '</td>';
+          txt += '<td>' + listing[x].document_first_name + '</td>';
+          txt += '<td>' + listing[x].bgc_dob + '</td>';
+          txt += '<td>' + listing[x].country_name + '</td>';
+          txt += '<td>' + listing[x].address_full_address + '</td>';
+          txt += '<td>' + listing[x].created_at + '</td>';
+          txt += '<td>' + listing[x].verification_status + '</td>';
+          txt += '<td> <button class=\"btn btn-sm mybtn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" onclick=\"editDetail(this)\" ">Edit</button><button type=\"button\" class=\"btn btn-sm mybtn btn-info\" data-toggle=\"modal\" data-target=\"#viewModal\" onclick=\"viewDetail(this)\">view</button> <button class=\"btn mybtn btn-sm btn-danger\" onclick=\"deleteRow(this)\" ">Delete</button>  </td></tr>';
+        }
+        txt += '</table>'    
+        document.getElementById("employee_table").innerHTML = txt;
+      }  
+    };
+    xmlhttp.open("POST", "http://cityjobs.pk/2.json", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("x=" + dbParam);
+
+  function deleteRow(r) {
+
+  var j = r.parentNode.parentNode.rowIndex;
+      var k=j-1;
+ listing.splice(k,1);
+      console.log(listing);
+    localStorage.setItem('final' , JSON.stringify(listing));
+console.log("after",listing);
+document.getElementById("myTable").deleteRow(j);
+}
+</script>
+<script type="text/javascript">
+
+  function viewDetail(r){
+        let mainlist = JSON.parse(localStorage.getItem('final'));
+        console.log("mainlist",mainlist);
+        var i = r.parentNode.parentNode.rowIndex;
+        let t = i-1;
+        let ref = (mainlist[t].reference);
+        console.log(info);
+        let ema = (mainlist[t].email);
+        let dname = (mainlist[t].document_first_name);
+        let dmname = (mainlist[t].document_middle_name);
+        let dlname = (mainlist[t].document_last_name);
+        let uservice = (mainlist[t].used_services_in_request);
+        let bfname = (mainlist[t].bgc_first_name);
+        let ddob = (mainlist[t].document_dob);
+        let ca = (mainlist[t].created_at);
+        let cc = (mainlist[t].country_code);
+        let vs = (mainlist[t].verification_status);
+        let cn = (mainlist[t].country_name);
+        let ad = (mainlist[t].address_first_name);
+        let vl = (mainlist[t].verify_last_state);
+        // alert(mainlist[t].address_first_name);
+        document.getElementById("reference1").value = ref;
+        document.getElementById("email1").value = ema;
+        document.getElementById("finame").value = dname;
+        document.getElementById('miname').value = dmname;
+        document.getElementById('laname').value = dlname;
+        document.getElementById('used_services').value = uservice;
+        document.getElementById('bgc').value = bfname;
+        document.getElementById('id8').value = ddob;
+        document.getElementById('id10').value = ca;
+        document.getElementById('id14').value = cc;
+        document.getElementById('id11').value = vs;
+        document.getElementById("myText3").value = cn;
+        document.getElementById('id9').value = ad;
+        // document.getElementById("myText4").value = info4;
+        document.getElementById("id15").value = vl;
+      }
+</script>
+<script type="text/javascript">
+  function editDetail(r){
+        // console.log(myObj.listing_data);
+              // let mydatao = JSON.parse(localStorage.getItem('listinTable'));
+        let mainlist = JSON.parse(localStorage.getItem('final'));
+        // let mainlist = mydatao.concat(mydatas);
+        localStorage.setItem('mainlist' , JSON.stringify(mainlist));
+        var i = r.parentNode.parentNode.rowIndex;
+        let t = i-1;
+        // alert(t);
+        let un = (t);
+        let unId = (mainlist[t].request_id);
+        let info = (mainlist[t].reference);
+        let info2 = (mainlist[t].email);
+        let infoo = (mainlist[t].document_first_name);
+        let info6 = (mainlist[t].document_middle_name);
+        let info7 = (mainlist[t].document_last_name);
+        let info12 = (mainlist[t].used_services_in_request);
+        let info13 = (mainlist[t].bgc_first_name);
+        let info8 = (mainlist[t].document_dob);
+        let info10 = (mainlist[t].created_at);
+        let info14 = (mainlist[t].country_code);
+        let info11 = (mainlist[t].verification_status);
+        let info3 = (mainlist[t].country_name);
+        let info9 = (mainlist[t].address_first_name);
+        let info15 = (mainlist[t].verify_last_state);
+        document.getElementById("eun").value = un;
+        document.getElementById("uno").value = unId;
+        document.getElementById("emyText").value = info;
+        document.getElementById("emyText2").value = info2;
+        document.getElementById("emytexts").value = infoo;
+        document.getElementById('eid6').value = info6;
+        document.getElementById('eid7').value = info7;
+        document.getElementById('eid12').value = info12;
+        document.getElementById('eid13').value = info13;
+        document.getElementById('eid8').value = info8;
+        document.getElementById('eid10').value = info10;
+        document.getElementById('eid14').value = info14;
+        document.getElementById('eid11').value = info11;
+        document.getElementById("eid16").value = info3;
+        document.getElementById('eid9').value = info9;
+        document.getElementById("eid15").value = info15;
+        console.log(mainlist[t]);
+      }
+  const update = (ev) => {
+  let mydatao = JSON.parse(localStorage.getItem('transactions'));
+        let mydatas = JSON.parse(localStorage.getItem('newTransactions'));
+        let mainlist = mydatao.concat(mydatas);
+  // console.log(mainlist[0].email);
+  ev.preventDefault();
+  let mn = document.getElementById('eun').value;
+  // alert(mn);
+  var users = JSON.parse(localStorage.getItem('final'));
+    users[mn]["email"]=document.getElementById('emyText2').value;
+    users[mn]["country_name"]=document.getElementById('eid16').value;
+    users[mn]["reference"]=document.getElementById('emyText').value;
+    users[mn]["document_first_name"]=document.getElementById('emytexts').value;
+    users[mn]["document_middle_name"]=document.getElementById('eid6').value;
+    users[mn]["document_last_name"]=document.getElementById('eid7').value;
+    users[mn]["document_dob"]=document.getElementById('eid8').value;
+    users[mn]["address_first_name"]=document.getElementById('eid9').value;
+    users[mn]["used_services_in_request"]=document.getElementById('eid12').value;
+    users[mn]["country_code"]=document.getElementById('eid14').value;
+    users[mn]["bgc_first_name"]=document.getElementById('eid13').value;
+    users[mn]["verify_last_state"]=document.getElementById('eid15').value;
+    users[mn]["created_at"]=document.getElementById('eid10').value;
+    users[mn]["verification_status"]=document.getElementById('eid11').value;
+    // alert(i);
+    localStorage.setItem('final',JSON.stringify(users));
+    let myd = JSON.parse(localStorage.getItem('final'));
+    // console.log(myd);
+  // var log = {
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('etest').addEventListener('click',update);
+});
+</script>
+<script type="text/javascript">
+  
+  function logout()
+  {
+    sessionStorage.clear();
+    window.location = "file:///Users/zunairajaved/Desktop/projects/task2/signin.html";
+
+  }
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#advanceSearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</html>
